@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./test" charset="utf-8"></script>
+    <style>
+        #canvas {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" height="1000" width="1000"></canvas>
+    <script>
+        var x = 0, y = 0, dibujando = false, color = 'black', grosor = 1
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var rect = canvas.getBoundingClientRect()
+
+        canvas.addEventListener('mousedown', function (e) {
+            x = e.clientX - rect.left
+            y = e.clientY - rect.top
+            dibujando = true
+        })
+        canvas.addEventListener("mousemove", function (e) {
+            if (dibujando === true) {
+                dibujar(x, y, e.clientX - rect.left, e.clientY - rect.top,)
+                x = e.clientX - rect.left
+                y = e.clientY - rect.top
+            }
+        })
+
+        canvas.addEventListener('mouseup', function (e) {
+            if (dibujando === true) {
+                dibujar(x, y, e.clientX - rect.left, e.clientY - rect.top)
+                x = 0
+                y = 0
+                dibujando = false
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
