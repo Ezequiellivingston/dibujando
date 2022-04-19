@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 const path = require('path');
-
 let data = 0
 //app.use(express.static('public'));
 
